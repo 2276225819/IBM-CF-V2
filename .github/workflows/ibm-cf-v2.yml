@@ -77,15 +77,18 @@ jobs:
                 "clients": [
                   {
                     "id": "${V2_UUID}",
-                    "alterId": 64
+                                                "level": 1,
+                                                "alterId": 0
                   }
                 ]
               },
               "streamSettings": {
-                "network":"ws",
-                "wsSettings": {
-                  "path": "${V2_WS_PATH_VMESS}"
-                }
+                "network":"kcp",
+                                "kcpSettings": {
+                                        "header": {
+                                                "type": "wireguard"
+                                        }
+                                }
               }
             }
           ],
@@ -130,7 +133,14 @@ jobs:
             {
               "protocol": "freedom"
             }
-          ]
+          ],
+          "transport": {
+                "kcpSettings": {
+                "uplinkCapacity": 100,
+                "downlinkCapacity": 100,
+                "congestion": true
+                }
+          }
         }
         P3TERX
 
